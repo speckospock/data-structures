@@ -22,15 +22,21 @@ var queueMethods = {
     // return highest value - lowest value key in storage;
     return this.highest - this.lowest;
   },
- // create a method 'enqueue' with parameter 'value'
- 'enqueue': function(value) {
-   // decrement lowest
-   this.lowest--;
-   // add value at key lowest to storage;
-   this.storage[this.lowest] = value;
- },
- // create a method 'dequeue'
-   // iff highest > lowest, do:
-     // decrement highest
-     // return value at highest storage key
+  // create a method 'enqueue' with parameter 'value'
+  'enqueue': function(value) {
+    // decrement lowest
+    this.lowest--;
+    // add value at key lowest to storage;
+    this.storage[this.lowest] = value;
+  },
+  // create a method 'dequeue'
+  'dequeue': function() {
+    // iff highest > lowest, do:
+    if (this.highest > this.lowest) {
+      // decrement highest
+      this.highest--;
+      // return value at highest storage key
+      return this.storage[this.highest];
+    }
+  }
 };
