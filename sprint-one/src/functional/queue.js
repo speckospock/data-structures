@@ -13,7 +13,9 @@ var Queue = function() {
 
   someInstance.enqueue = function(value) {
     // decrement lowest value for key;
+    lowest--;
     // Store val in storage at position of lowest value;
+    storage[lowest] = value;
   };
 
   someInstance.dequeue = function() {
