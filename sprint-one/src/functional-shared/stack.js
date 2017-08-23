@@ -14,16 +14,16 @@ var Stack = function() {
 
 var stackMethods = {
   //create a push function with key 'push' with parameter value
-  'push' : function(value){
+  'push': function(value) {
     //add value to stack storage
     this.storage[this.count] = value;
     //increment stack size
     this.count++;
   },
   //create a pop function with no parameters with key 'pop'
-  'pop' : function(){
+  'pop': function() {
     //iff stack size > 0:
-    if(this.count > 0){
+    if (this.count > 0) {
       //decrement stack size
       this.count--;
       //return value at stack storage[size]
@@ -31,7 +31,7 @@ var stackMethods = {
     }
   },
   //create a size function with key 'size'
-  'size' : function(){
+  'size': function() {
     //return size (created at line 7)
     return this.count;
   }
