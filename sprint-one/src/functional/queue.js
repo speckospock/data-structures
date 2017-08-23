@@ -19,8 +19,12 @@ var Queue = function() {
   };
 
   someInstance.dequeue = function() {
-    // decrement highest value;
-    // return grab value at highest value for key;
+    if (highest > lowest) {
+      // decrement highest value;
+      highest--;
+      // return grab value at highest value for key;
+      return storage[highest];
+    }
   };
 
   someInstance.size = function() {
