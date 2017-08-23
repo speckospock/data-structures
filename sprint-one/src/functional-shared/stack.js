@@ -23,8 +23,15 @@ var stackMethods = {
     this.count++;
   },
   //create a pop function with no parameters with key 'pop'
-    //decrement stack size
-    //return value at stack storage[size]
+  'pop' : function(){
+    //iff stack size > 0:
+    if(this.count > 0){
+      //decrement stack size
+      this.count--;
+      //return value at stack storage[size]
+      return this.storage[this.count];
+    }
+  },
   //create a size function with key 'size'
   'size' : function(){
     //return size (created at line 7)
