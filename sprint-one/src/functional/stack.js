@@ -9,7 +9,9 @@ var Stack = function() {
   // Implement the methods below
   someInstance.push = function(value) {
     // add a new value to stack storage under key of stack size;
+    storage[count] = value;
     // increment number of items in stack;
+    count++;
   };
 
   someInstance.pop = function() {
