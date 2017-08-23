@@ -16,10 +16,14 @@ var Stack = function() {
 
   someInstance.pop = function() {
     // iff stack size > 0, do this:
+    if (count > 0) {
       // decrement number of items in stack;
+      count--;
       // grab element of stack storage whose key is stack size;
+      return storage[count];
       // return grabbed element;
     // else, do nothing
+    }
   };
 
   someInstance.size = function() {
