@@ -2,7 +2,7 @@ var Stack = function() {
   var someInstance = {};
 
   // Create a number which represents size of stack, initially 0;
-
+  var count = 0;
   // Use an object with numeric keys to store values
   var storage = {};
 
@@ -22,6 +22,7 @@ var Stack = function() {
 
   someInstance.size = function() {
     // return number of items in stack
+    return count;
   };
 
   return someInstance;
