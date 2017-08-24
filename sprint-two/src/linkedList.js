@@ -20,28 +20,40 @@ var LinkedList = function() {
   };
 
   list.removeHead = function() {
-    debugger;
     //check to see if there is a head
     if (list.head !== null) {
       //set old head to head (for reference)
       var oldHead = list.head;
       //set head to head.next
-      list.head = list.head.next;
+      list.head = list.head.next || null;
 
       //delete old head from existence?
       //set old head.next to null
       oldHead.next = null;
+      return oldHead.value;
     }
     //return the head?
-    return list.head;
   };
 
   list.contains = function(target) {
     //while true:
+    //debugger;
+    var current = list.head;
+    while (true) {
       //current = current || head
       //if current.value is target, return true
+      if (current.value === target){
+        return true;
+      }
       //elif current.next is null, break
+      if (current.next === null){
+        break;
+      } else {
+        current = current.next;
+      }
+    }
     //return false
+    return false;
   };
 
   return list;
