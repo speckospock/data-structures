@@ -18,4 +18,10 @@ Queue.prototype.size = function () {
   return this.highest - this.lowest;
 };
 //Add an enqueue method to queue prototype
+Queue.prototype.enqueue = function(value) {
+  //decrement lowest
+  this.lowest--;
+  //set queue storage[lowest] to value
+  this.storage[this.lowest] = value;
+};
 //Add an dequeue method to queue prototype
