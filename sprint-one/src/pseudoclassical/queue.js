@@ -1,11 +1,5 @@
-var Queue = function() {
-  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
-  // but try not not reference your old code in writing the new style.
+var Queue = function() {};
 
-  //
-};
-
-//Add things to the prototype here
 //Add a storage property to queue prototype
 Queue.prototype.storage = {};
 //Add a highest property to queue prototype
@@ -25,3 +19,12 @@ Queue.prototype.enqueue = function(value) {
   this.storage[this.lowest] = value;
 };
 //Add an dequeue method to queue prototype
+Queue.prototype.dequeue = function() {
+  //iff highest > lowest:
+  if (this.highest > this.lowest) {
+    //decrement highest
+    this.highest--;
+    //return queue storage[highest]
+    return this.storage[this.highest];
+  }
+};
