@@ -13,13 +13,27 @@ var LinkedList = function() {
     }
     //set tail to value
     list.tail = newNode;
+    //if there's no head, set head to tail
+    if (list.head === null){
+      list.head = list.tail;
+    }
   };
 
   list.removeHead = function() {
-    //set old head to head (for reference)
-    //set head to head.next
-    //delete old head from existence?
-    //set old head.next to null
+    debugger;
+    //check to see if there is a head
+    if (list.head !== null) {
+      //set old head to head (for reference)
+      var oldHead = list.head;
+      //set head to head.next
+      list.head = list.head.next;
+
+      //delete old head from existence?
+      //set old head.next to null
+      oldHead.next = null;
+    }
+    //return the head?
+    return list.head;
   };
 
   list.contains = function(target) {
