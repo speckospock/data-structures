@@ -3,13 +3,31 @@ var LinkedList = function() {
   list.head = null;
   list.tail = null;
 
-  list.addToTail = function(value) {
+  list.addToTail = function(value) { //value is the node to add
+    //creating a new node from value
+    var newNode = new Node(value);
+    //iff tail isn't null:
+    if (list.tail !== null) {
+      //set tail.next to value
+      list.tail.next = newNode;
+    }
+    //set tail to value
+    list.tail = newNode;
   };
 
   list.removeHead = function() {
+    //set old head to head (for reference)
+    //set head to head.next
+    //delete old head from existence?
+    //set old head.next to null
   };
 
   list.contains = function(target) {
+    //while true:
+      //current = current || head
+      //if current.value is target, return true
+      //elif current.next is null, break
+    //return false
   };
 
   return list;
