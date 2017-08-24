@@ -28,7 +28,13 @@ var queueMethods = {
     this.storage[this.lowest] = value;
   },
   // Create dequeue function, no parameters
+  'dequeue': function () {
     // iff highest > lowest, do:
+    if (this.highest > this.lowest) {
       // decrement highest
+      this.highest--;
       // return storage[highest]
+      return this.storage[this.highest];
+    }
+  }
 };
