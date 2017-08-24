@@ -21,8 +21,12 @@ var queueMethods = {
     return this.highest - this.lowest;
   },
   // Create enqueue function with param value
+  'enqueue': function (value) {
     // Decrement lowest
+    this.lowest--;
     // Set storage[lowest] to value
+    this.storage[this.lowest] = value;
+  },
   // Create dequeue function, no parameters
     // iff highest > lowest, do:
       // decrement highest
