@@ -14,7 +14,7 @@ var LinkedList = function() {
     //set tail to value
     list.tail = newNode;
     //if there's no head, set head to tail
-    if (list.head === null){
+    if (list.head === null) {
       list.head = list.tail;
     }
   };
@@ -37,16 +37,15 @@ var LinkedList = function() {
 
   list.contains = function(target) {
     //while true:
-    //debugger;
     var current = list.head;
     while (true) {
       //current = current || head
       //if current.value is target, return true
-      if (current.value === target){
+      if (current.value === target) {
         return true;
       }
       //elif current.next is null, break
-      if (current.next === null){
+      if (current.next === null) {
         break;
       } else {
         current = current.next;
