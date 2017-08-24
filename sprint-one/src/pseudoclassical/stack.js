@@ -14,8 +14,12 @@ Stack.prototype.size = function () {
   return this.count;
 };
 // Add a push method to stack proto with param value
+Stack.prototype.push = function (value) {
   // Increment this stack's count
+  this.count++;
   // Set this stack's storage[count] to value
+  this.storage[this.count] = value;
+};
 // Add a pop method to stack proto
   // iff this stack's count > 0:
     // decrement count
