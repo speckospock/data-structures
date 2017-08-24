@@ -25,9 +25,15 @@ var stackMethods = {
     this.storage[this.count] = value;
     //increment size
     this.count++;
-  }
+  },
   //create a pop property, set it to a function with no parameters
+  'pop': function() {
     //iff stack size > 0
+    if (this.count > 0) {
       //decrement count
+      this.count--;
       //return the value at stack storage[count]
+      return this.storage[this.count];
+    }
+  },
 };
