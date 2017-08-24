@@ -20,8 +20,12 @@ var stackMethods = {
     return this.count;
   },
   //create a push property, set it to a function with parameter value
+  'push': function(value) {
     //add value to storage at key size
+    this.storage[this.count] = value;
     //increment size
+    this.count++;
+  }
   //create a pop property, set it to a function with no parameters
     //iff stack size > 0
       //decrement count
