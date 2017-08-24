@@ -1,6 +1,6 @@
 var Tree = function(value) {
   var newTree = {};
-  newTree.value = value;
+  newTree.value = value || null;
 
   // your code here
   newTree.children = [];  // fix me
@@ -21,10 +21,20 @@ treeMethods.addChild = function(value) {
 
 treeMethods.contains = function(target) {
   // check if target is current tree's value
+  if (this.value === target) {
   // if so, return true.
+    return true;
+  } else {
     // else, iterate through current tree's children
+    for (let i = 0; i < this.children.length; i++) {
       // if child contains value return true
+      if (this.children[i].contains(target)) {
+        return true;
+      }
+    }
+  }
   // return false
+  return false;
 };
 
 
