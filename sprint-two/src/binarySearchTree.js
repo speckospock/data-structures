@@ -6,8 +6,17 @@ BinarySearchTree.prototype.left; //at some point, this will be a binarySearchTre
 
 BinarySearchTree.prototype.right;
 
+//BinarySearchTree.prototype.numChilds
+BinarySearchTree.prototype.size = function() { //a function which calls depthFirstLog to count each child
+  var _count = 0;
+  this.depthFirstLog(function() {
+    _count++;
+  });
+  return _count;
+};
+//BinarySearchTree.prototype.height = function {returns log(numChilds)}
+
 BinarySearchTree.prototype.insert = function(value) {
-  //depthFirstLog will NOT be used. For now >.>
   //compare tree to value
   if (this.value < value) {
   //iff tree < value:
@@ -34,7 +43,7 @@ BinarySearchTree.prototype.insert = function(value) {
 
 BinarySearchTree.prototype.contains = function(target) {
   //if this.value is target:
-  if(this.value === target) {
+  if (this.value === target) {
     //return true;
     return true;
   } else {
@@ -73,4 +82,8 @@ BinarySearchTree.prototype.depthFirstLog = function (callback) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  Constructor function -> O(1), because it just creates and returns an object which delegates to the prototype
+  Insert function -> O(log n), because it splits the tree in half each step, complexity depends only on the height of the tree
+  Contains function -> O(log n), for the same reason as insert
+  depthFirstLog function -> Overall: O(n)*O(callback), because we traverse every node, and perform O(callback) operation at each step.
  */
