@@ -36,5 +36,5 @@ describe('set', function() {
     set.add('Peter Dinklage');
     set.remove('Peter Dinklage');
     expect(set.contains('Peter Dinklage')).to.equal(false);
-  })
+  });
 });
