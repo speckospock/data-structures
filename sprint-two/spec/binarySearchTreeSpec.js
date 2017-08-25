@@ -5,6 +5,8 @@ describe('binarySearchTree', function() {
     binarySearchTree = new BinarySearchTree(5); //to use pseduoclassical
   });
 
+  //check if each node has only one left and one right child
+
   it('should have methods named "insert", "contains", and "depthFirstLog', function() {
     expect(binarySearchTree.insert).to.be.a('function');
     expect(binarySearchTree.contains).to.be.a('function');
