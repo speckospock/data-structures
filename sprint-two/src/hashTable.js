@@ -32,7 +32,10 @@ HashTable.prototype.retrieve = function(k) {
 HashTable.prototype.remove = function(k) {
   var index = this._newHash(k, this._limit);
   // if this._storage[index][k] not undefined
+  if (this._storage.get(index) !== undefined) {
     // delete this._storage[index][k]
+    delete this._storage.get(index)[k];
+  }
 };
 
 
