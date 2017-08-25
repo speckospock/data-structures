@@ -51,7 +51,7 @@ HashTable.prototype.remove = function(k) {
       }
     }
     // if toDelete is defined
-    if (toDelete  !== undefined) {
+    if (toDelete !== undefined) {
       // delete bucket[i]
       this._storage.get(index).splice(toDelete, 1);
     }
@@ -62,4 +62,6 @@ HashTable.prototype.remove = function(k) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ // All functions above have complexity O(1) wrt their inputs.
+ // However, with respect to the size of each bucket, they run at O(n).
  */
