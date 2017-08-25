@@ -5,11 +5,11 @@ var HashTable = function() {
 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
-  debugger;
+  //debugger;
   // if this._storage[index] is undefined:
   if (this._storage.get(index) === undefined) {
     this._storage.set(index, []);
-    this._storage.get(index).push([k,v]);
+    this._storage.get(index).push([k, v]);
   } else {
     // iterate over bucket
     for (let i = 0; i < this._storage.get(index).length; i++) {
@@ -19,7 +19,7 @@ HashTable.prototype.insert = function(k, v) {
         this._storage.get(index)[i][1] = v;
       } else {
       // else push into bucket [k,v]
-        this._storage.get(index).push([k,v]);
+        this._storage.get(index).push([k, v]);
       }
     }
   }
@@ -43,10 +43,18 @@ HashTable.prototype.remove = function(k) {
   if (this._storage.get(index) !== undefined) {
     var toDelete;
     // iterate over bucket
+    for (let i = 0; i < this._storage.get(index).length; i++) {
       // if bucket[i][0] = k
+      if (this._storage.get(index)[i][0] === k) {
         // toDelete = i
+        toDelete = i;
+      }
+    }
     // if toDelete is defined
+    if (toDelete  !== undefined) {
       // delete bucket[i]
+      this._storage.get(index).splice(toDelete, 1);
+    }
   }
 };
 
