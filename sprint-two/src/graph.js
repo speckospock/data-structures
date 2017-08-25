@@ -26,10 +26,12 @@ Graph.prototype.contains = function(value) {
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(value) {
   //iterate over edges[value]
-  debugger;
+  //debugger;
   for (let i = 0; i < this.edges[value].length; i++) {
     //iterate over those, and removeEdge (value, them)
-    this.removeEdge(value, this.edges[value][i]);
+    if (this.edges[value][i] !== undefined) {
+      this.removeEdge(value, i);
+    }
   }
   //set nodes[value] to undefined;
   this.nodes[value] = undefined;
