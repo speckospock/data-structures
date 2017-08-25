@@ -1,9 +1,7 @@
 
 // Instantiate a new graph
-var Graph = function() {
-};
+var Graph = function() {};
 
-//(each node is an array)
 //add a property to the prototype to hold node array, initialize to []
 Graph.prototype.nodes = [];
 //add an 'edges' property to hold edges array
@@ -26,7 +24,6 @@ Graph.prototype.contains = function(value) {
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(value) {
   //iterate over edges[value]
-  //debugger;
   for (let i = 0; i < this.edges[value].length; i++) {
     //iterate over those, and removeEdge (value, them)
     if (this.edges[value][i] !== undefined) {
@@ -70,4 +67,14 @@ Graph.prototype.forEachNode = function(cb) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+  Constructor function -> Because it extends the new instance with methods from Graph.prototype,
+    the time complexity depends on the size of Graph.prototype, therefore O(n)
+  addNode -> Because we perform two array inserts, O(1)
+  contains -> Because we perform one array lookup, O(1)
+  removeNode -> Because we iterate over the array this.edges[value], and perform a O(n) operation at each step,
+    we get O(n)
+  hasEdge -> Because we perform two array lookups O(1)
+  addEdge -> Because we perform two (2d) array lookups, O(1)
+  removeEdge -> Because we perform two (2d) array lookups, O(1)
+  forEachNode -> Without respect to cb, we have O(n), therefore the overall complexity will be O(n)*O(cb)
  */
