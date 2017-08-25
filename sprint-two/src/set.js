@@ -18,6 +18,7 @@ setPrototype.contains = function(item) {
 
 setPrototype.remove = function(item) {
   // assign value at set storage at key item to false
+  this._storage[item] = false;
 };
 
 /*
