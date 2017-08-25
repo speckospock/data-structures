@@ -23,4 +23,6 @@ setPrototype.remove = function(item) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+   // All three methods only require object key lookups, so are O(1)
+   // Constructor complexity depends on the size of the prototype, so runs at O(n)
  */
