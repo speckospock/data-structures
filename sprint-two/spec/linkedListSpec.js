@@ -51,5 +51,18 @@ describe('linkedList', function() {
     expect(linkedList.contains(4)).to.equal(false);
   });
 
+  it('should apply a callback function to each node when forEachNode is called', function() {
+    var testArray = [];
+    // Add two elements to linked list
+    linkedList.addToTail(1);
+    linkedList.addToTail(2);
+    // Call forEach with callback that increments value by 1
+    linkedList.forEachNode(function(value) {
+      testArray.push(value);
+    });
+    // Expect that each value is incremented by 1
+    expect(testArray).to.eql([1, 2]);
+  });
+
   // add more tests here to test the functionality of linkedList
 });

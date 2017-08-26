@@ -2,26 +2,29 @@ var LinkedList = function() {
   var list = {};
   list.head = null;
   list.tail = null;
+  //list.size = 0;
+
+
 
   list.addToTail = function(value) { //value is the node to add
     //creating a new node from value
     var newNode = new Node(value);
     //iff tail isn't null:
-    if (list.tail !== null) {
+    if (list.tail) {
       //set tail.next to value
       list.tail.next = newNode;
     }
     //set tail to value
     list.tail = newNode;
     //if there's no head, set head to tail
-    if (list.head === null) {
+    if (!list.head) {
       list.head = list.tail;
     }
   };
 
   list.removeHead = function() {
     //check to see if there is a head
-    if (list.head !== null) {
+    if (list.head) {
       //set old head to head (for reference)
       var oldHead = list.head;
       //set head to head.next
@@ -45,7 +48,7 @@ var LinkedList = function() {
         return true;
       }
       //elif current.next is null, break
-      if (current.next === null) {
+      if (!current.next) {
         break;
       } else {
         current = current.next;
@@ -55,15 +58,25 @@ var LinkedList = function() {
     return false;
   };
 
+  list.forEachNode = function(callback) {
+    //debugger;
+    // start with callback head's value
+    var current = list.head;
+    callback(current.value);
+    // while current node's next prop isn't null:
+    while (current.next) {
+      // callback on next node's value
+      current = current.next;
+      callback(current.value);
+    }
+  };
   return list;
 };
 
 var Node = function(value) {
   var node = {};
-
   node.value = value;
   node.next = null;
-
   return node;
 };
 
