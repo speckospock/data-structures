@@ -1,6 +1,7 @@
 var HashTable = function() {
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
+  this._size = 0;
 };
 
 HashTable.prototype.insert = function(k, v) {
@@ -10,6 +11,7 @@ HashTable.prototype.insert = function(k, v) {
   if (this._storage.get(index) === undefined) {
     this._storage.set(index, []);
     this._storage.get(index).push([k, v]);
+    this._size++;
   } else {
     // iterate over bucket
     for (let i = 0; i < this._storage.get(index).length; i++) {
@@ -20,6 +22,7 @@ HashTable.prototype.insert = function(k, v) {
       } else {
       // else push into bucket [k,v]
         this._storage.get(index).push([k, v]);
+        this._size++;
       }
     }
   }
@@ -54,11 +57,27 @@ HashTable.prototype.remove = function(k) {
     if (toDelete !== undefined) {
       // delete bucket[i]
       this._storage.get(index).splice(toDelete, 1);
+      this._size--;
     }
   }
 };
 
-
+/*
+//check whether we need to reHash
+HashTable.prototype.tryRehash = function() {
+  //check if size is more than 75% of Limit
+  if (this._size > (this._limit*.75)) {
+    //if so, reHash with double current Limit
+    this.reHash(2*this._limit);
+  }
+  //check if size is less than 25% of limit
+  if (this._size < (this._limit*.25)) {
+    //if so, reHash with half current limit
+    //debugger;
+    this.reHash(.5*this._limit);
+  }
+};
+*/
 
 /*
  * Complexity: What is the time complexity of the above functions?
