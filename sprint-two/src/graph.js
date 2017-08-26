@@ -40,6 +40,16 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
   return this.edges[fromNode][toNode] !== undefined;
 };
 
+Graph.prototype.getEdges = function(value) {
+  var output = [];
+  for (let i = 0; i < this.edges[value].length; i++) {
+    if (this.edges[value][i]) {
+      output.push(i);
+    }
+  }
+  return output;
+};
+
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
   //set edges[fromNode][toNode] = true
