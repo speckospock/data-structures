@@ -37,4 +37,17 @@ describe('set', function() {
     set.remove('Peter Dinklage');
     expect(set.contains('Peter Dinklage')).to.equal(false);
   });
+
+  //implement set size test
+  it('should return the number of members within the set', () => {
+    set.add('Peter Dinklage');
+    set.add('John Stamos');
+    set.add('Billy Bob Thornton');
+    set.add('Vin Diesel');
+    expect(set._length).to.equal(4);
+    set.remove('Billy Bob Thornton');
+    expect(set._length).to.equal(3);
+  });
+
+  //make set support any type of element?
 });

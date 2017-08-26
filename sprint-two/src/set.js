@@ -1,12 +1,17 @@
 var Set = function() {
   var set = Object.create(setPrototype);
   set._storage = {};
+  set._length = 0;
   return set;
 };
 
 var setPrototype = {};
 
 setPrototype.add = function(item) {
+  //if this._storage[item] !true, increment count
+  if (!this._storage[item]) {
+    this._length++;
+  }
   // assign value at set storage at key item to true
   this._storage[item] = true;
 };
@@ -17,9 +22,14 @@ setPrototype.contains = function(item) {
 };
 
 setPrototype.remove = function(item) {
+  //if this._storage[item] true, decrement count
+  if (this._storage[item]) {
+    this._length--;
+  }
   // assign value at set storage at key item to false
   this._storage[item] = false;
 };
+
 
 /*
  * Complexity: What is the time complexity of the above functions?
