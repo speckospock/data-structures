@@ -54,4 +54,27 @@ describe('tree', function() {
     expect(nodes).to.eql([1, 2, 3, 5, 4]);
   });
 
+  it('should return the parent of a node', function () {
+    tree.value = 1;
+    tree.addChild(2);
+    tree.addChild(3);
+    tree.addChild(4);
+    tree.children[1].addChild(5);
+    expect(tree.parent).to.equal(null);
+    expect(tree.children[2].parent.value).to.equal(1);
+    expect(tree.children[1].children[0].parent.value).to.equal(3);
+  });
+
+  it('should return the siblings (all the parent\'s children) of a node', function () {
+    tree.value = 1;
+    tree.addChild(2);
+    tree.addChild(3);
+    tree.addChild(4);
+    tree.children[1].addChild(5);
+    expect(tree.children[0].siblings.map((el) => el.value)).to.eql([3, 4]);
+    expect(tree.children[1].siblings.map((el) => el.value)).to.eql([2, 4]);
+    expect(tree.children[2].siblings.map((el) => el.value)).to.eql([2, 3]);
+    expect(tree.siblings).to.eql([]);
+  });
+
 });

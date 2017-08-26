@@ -3,8 +3,9 @@ var Tree = function(value) {
   newTree.value = value || null;
 
   // your code here
-  newTree.children = [];  // fix me
-
+  newTree.children = [];
+  newTree.parent = null;
+  newTree.siblings = [];
   // extend newTree with treeMethods
   _.extend(newTree, treeMethods);
   return newTree;
@@ -13,10 +14,22 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
+//  debugger;
+
   // create a tree with value of value
   var newChild = Tree(value);
+  // add parent property to newChild
+  newChild.parent = this;
+  // iterate through this tree's children
+  for (let i = 0; i < this.children.length; i++) {
+    // add newChild to each of their siblings array
+    this.children[i].siblings.push(newChild);
+  }
+  // newChild.siblings = this tree's children
+  newChild.siblings = [...this.children];
   // push the new tree to tree.children
   this.children.push(newChild);
+  //
 };
 
 treeMethods.contains = function(target) {
