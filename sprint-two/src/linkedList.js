@@ -4,8 +4,6 @@ var LinkedList = function() {
   list.tail = null;
   //list.size = 0;
 
-
-
   list.addToTail = function(value) { //value is the node to add
     //creating a new node from value
     var newNode = new Node(value);
@@ -82,4 +80,10 @@ var Node = function(value) {
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ // Node is O(1) wrt input value
+ // linkedList is also O(1) since it has no inputs
+ // addToTail also O(1), since all operations in it are O(1)
+ // removeHead also O(1) for same reason
+ // contains is O(1) wrt input, but inner loop is O(n) wrt the size of the linked list
+ // forEachNode is O(1)*O(callback) wrt its inputs, but O(n)*0(callback)
  */

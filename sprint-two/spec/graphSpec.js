@@ -68,4 +68,29 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should allow a graph with no edges', function() {
+    graph.addNode(5);
+    graph.addNode(2);
+    graph.addNode(1);
+    expect(graph.contains(5)).to.be.true;
+    expect(graph.contains(2)).to.be.true;
+    expect(graph.contains(1)).to.be.true;
+    expect(graph.hasEdge(1, 2)).to.be.false;
+    expect(graph.hasEdge(5, 1)).to.be.false;
+    expect(graph.hasEdge(2, 5)).to.be.false;
+  });
+
+  it('should only have symmetrical edges', function() {
+    graph.addNode(5);
+    graph.addNode(2);
+    graph.addNode(1);
+    graph.addEdge(1, 2);
+    graph.addEdge(1, 5);
+    graph.addEdge(2, 5);
+    expect(graph.hasEdge(2, 1)).to.be.true;
+    expect(graph.hasEdge(5, 1)).to.be.true;
+    expect(graph.hasEdge(5, 2)).to.be.true;
+  });
+
 });
