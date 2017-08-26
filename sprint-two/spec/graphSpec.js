@@ -47,6 +47,19 @@ describe('graph', function() {
     expect(graph.getEdges(5)).to.eql([4, 66, 347]);
   });
 
+  it('should list all unique edges within the graph', function() {
+    graph.addNode(4);
+    graph.addNode(5);
+    graph.addNode(347);
+    graph.addNode(66);
+    graph.addEdge(5, 4);
+    graph.addEdge(5, 347);
+    graph.addEdge(5, 66);
+    graph.addEdge(4, 347);
+    graph.addEdge(66, 347);
+    expect(graph.getUniqueEdges()).to.eql([[4, 5], [4, 347], [5, 66], [5, 347], [66, 347]]);
+  });
+
   it('should remove edges between nodes', function() {
     graph.addNode(4);
     graph.addNode(5);

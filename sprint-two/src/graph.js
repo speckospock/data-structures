@@ -1,11 +1,11 @@
 
 // Instantiate a new graph
-var Graph = function() {};
-
-//add a property to the prototype to hold node array, initialize to []
-Graph.prototype.nodes = [];
-//add an 'edges' property to hold edges array
-Graph.prototype.edges = [];
+var Graph = function() {
+  //add a property to the prototype to hold node array, initialize to []
+  this.nodes = [];
+  //add an 'edges' property to hold edges array
+  this.edges = [];
+};
 
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(value) {
@@ -47,6 +47,25 @@ Graph.prototype.getEdges = function(value) {
       output.push(i);
     }
   }
+  return output;
+};
+
+Graph.prototype.getUniqueEdges = function() {
+  var output = [];
+  var visited = [];
+  var grab = this.getEdges.bind(this);
+  this.forEachNode(function(value) {
+    visited.push(value);
+    var valueEdges = grab(value);
+    //iterate over the edge array, form tuples, and push to output
+    for (let i = 0; i < valueEdges.length; i++) {
+      //at each stop, check if valueEdges[i] is in visited
+      //if not, push tuple (value, valueEdges[i])
+      if (!visited.includes(valueEdges[i])) {
+        output.push([value, valueEdges[i]]);
+      }
+    }
+  });
   return output;
 };
 
