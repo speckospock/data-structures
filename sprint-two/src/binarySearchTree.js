@@ -80,6 +80,35 @@ BinarySearchTree.prototype.depthFirstLog = function (callback) {
   }
 };
 
+BinarySearchTree.prototype.traverseDepthFirst = function (callback) {
+  //apply callback to top node (this?)
+  callback(this);
+  //for the left child, apply depthFirstLog(callback)
+  if (this.left) {
+    this.traverseDepthFirst.call(this.left, callback);
+  }
+  //for the right child, apply traverseDepthFirst(callback)
+  if (this.right) {
+    this.traverseDepthFirst.call(this.right, callback);
+  }
+};
+
+BinarySearchTree.prototype.terminalNodes = function () {
+  var output = [];
+  this.traverseDepthFirst(function(node) {
+    //debugger;
+    if (!(node.left || node.right)) {
+      output.push(node);
+    }
+  });
+  return output;
+};
+
+BinarySearchTree.prototype.isUnbalanced = function () {
+  var optimalNumber = Math.ceil(this.size() / 2);
+  return (this.terminalNodes().length !== optimalNumber);
+};
+
 /*
  * Complexity: What is the time complexity of the above functions?
   Constructor function -> O(1), because it just creates and returns an object which delegates to the prototype

@@ -56,8 +56,12 @@ HashTable.prototype.remove = function(k) {
     // if toDelete is defined
     if (toDelete !== undefined) {
       // delete bucket[i]
+      //this._storage.get(index).splice(toDelete, 1);
       this._storage.get(index).splice(toDelete, 1);
       this._size--;
+      // if (!this._storage.get(index).length) {
+      //   this._storage.set(index, undefined);
+      // }
     }
   }
 };

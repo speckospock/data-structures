@@ -18,6 +18,31 @@ describe('binarySearchTree', function() {
     binarySearchTree.insert(6);
     expect(binarySearchTree.left.right.value).to.equal(3);
     expect(binarySearchTree.right.left.value).to.equal(6);
+    //debugger;
+  });
+
+  it('should return the correct number of terminal nodes in the tree', function() {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(6);
+    expect(binarySearchTree.terminalNodes().length).to.eql(2);
+  });
+
+  it('should determine when a tree is unbalanced', function() {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(6);
+    expect(binarySearchTree.isUnbalanced()).to.be.true;
+
+    var balancedTree = new BinarySearchTree(6);
+    balancedTree.insert(3);
+    balancedTree.insert(7);
+    balancedTree.insert(2);
+    balancedTree.insert(5);
+    debugger;
+    expect(balancedTree.isUnbalanced()).to.be.false;
   });
 
   it('should have a working "contains" method', function() {
