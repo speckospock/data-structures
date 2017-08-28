@@ -22,10 +22,24 @@ treeMethods.addChild = function(value) {
   //
 };
 
+treeMethods.removeChild = function(target) {
+  var removed;
+  this.children = this.children.filter((child) => {
+    if (child.value === target) {
+      removed = child;
+    }
+    return (child.value !== target);
+  });
+  if (!!removed.parent) {
+    removed.parent = null;
+  }
+  return removed;
+};
+
 treeMethods.contains = function(target) {
   // returns true if target is current tree's value
   // recursively calls itself on each child tree if not
-  return (this.value === target) || !!this.children.reduce((found, child) => {
+  return (this.value === target) || this.children.reduce((found, child) => {
     return (child.contains(target) || found);
   }, false);
 };
@@ -44,6 +58,15 @@ treeMethods.siblings = function() {
   if (this.parent) {
     var thisValue = this.value;
     return this.parent.children.filter((sibling) => (sibling.value !== thisValue));
+  }
+};
+
+treeMethods.removeFromParent = function() {
+  if (!!this.parent) {
+    var thisParent = this.parent;
+    var thisValue = this.value;
+    thisParent.removeChild(thisValue);
+    this.parent = null;
   }
 };
 
