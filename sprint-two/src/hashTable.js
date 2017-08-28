@@ -14,16 +14,16 @@ HashTable.prototype.insert = function(k, v) {
     this._size++;
   } else {
     // iterate over bucket
-    for (let i = 0; i < this._storage.get(index).length; i++) {
-      // if bucket[i][0] is key
-      if (this._storage.get(index)[i][0] === k) {
-        // set bucket[i][1] to value
-        this._storage.get(index)[i][1] = v;
-      } else {
-      // else push into bucket [k,v]
-        this._storage.get(index).push([k, v]);
-        this._size++;
+    var found = false;
+    this._storage.get(index).forEach((tuple) => {
+      if (tuple[0] === k) {
+        found = true;
+        tuple[1] = v;
       }
+    });
+    if (!found) {
+      this._storage.get(index).push([k, v]);
+      this._size++;
     }
   }
 };
