@@ -30,15 +30,12 @@ treeMethods.contains = function(target) {
   }, false);
 };
 
-//treeMethods is breadth-first
+//treeMethods is depth-first
 treeMethods.traverse = function(callback) {
   // call cb on this
   callback(this);
-  // iterate through children
-  for (let i = 0; i < this.children.length; i++) {
-    // call traverse(cb) on each child
-    this.children[i].traverse(callback);
-  }
+  // iterate through children and call cb
+  this.children.forEach((child) => child.traverse(callback));
 };
 
 treeMethods.siblings = function() {
