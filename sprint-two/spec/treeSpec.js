@@ -79,7 +79,6 @@ describe('tree', function() {
     var angryChild = new Tree(3);
     tree.children.push(angryChild);
     angryChild.removeFromParent();
-    debugger;
     expect(angryChild.parent).to.equal(null);
     expect(tree.contains(3)).to.be.false;
   });

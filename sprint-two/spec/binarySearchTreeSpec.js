@@ -21,6 +21,13 @@ describe('binarySearchTree', function() {
     //debugger;
   });
 
+  it('should return the parent of a tree', () => {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(3);
+    expect(binarySearchTree.parent).to.equal.null;
+    expect(binarySearchTree.left.parent.value).to.equal(5);
+  });
+
   it('should return the correct number of terminal nodes in the tree', function() {
     binarySearchTree.insert(2);
     binarySearchTree.insert(3);

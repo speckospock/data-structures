@@ -1,10 +1,9 @@
 var BinarySearchTree = function(value) {
   this.value = value;
+  this.left;
+  this.right;
+  this.parent = null;
 };
-
-BinarySearchTree.prototype.left; //at some point, this will be a binarySearchTree
-
-BinarySearchTree.prototype.right;
 
 //BinarySearchTree.prototype.numChilds
 BinarySearchTree.prototype.size = function() { //a function which calls depthFirstLog to count each child
@@ -19,7 +18,7 @@ BinarySearchTree.prototype.size = function() { //a function which calls depthFir
 BinarySearchTree.prototype.insert = function(value) {
   //compare tree to value
   if (this.value < value) {
-  //iff tree < value:
+    //iff tree < value:
     //check if there's a right child
     if (this.right) {
       //if so: call tree.right.insert(value)
@@ -27,9 +26,10 @@ BinarySearchTree.prototype.insert = function(value) {
     } else {
       //if not: tree.right = BST(value)
       this.right = new BinarySearchTree(value);
+      this.right.parent = this;
     }
   } else if (this.value > value) {
-  //else iff tree > value:
+    //else iff tree > value:
     //check if there's a left child
     if (this.left) {
       //if so: call tree.left.insert(value)
@@ -37,6 +37,7 @@ BinarySearchTree.prototype.insert = function(value) {
     } else {
       //if not: tree.left = BST(value)
       this.left = new BinarySearchTree(value);
+      this.left.parent = this;
     }
   }
 };
@@ -47,7 +48,7 @@ BinarySearchTree.prototype.contains = function(target) {
     //return true;
     return true;
   } else {
-  //else:
+    //else:
     //if left:
     if (this.left) {
       //call contains on left, if true return true
@@ -67,7 +68,7 @@ BinarySearchTree.prototype.contains = function(target) {
   return false;
 };
 
-BinarySearchTree.prototype.depthFirstLog = function (callback) {
+BinarySearchTree.prototype.depthFirstLog = function(callback) {
   //apply callback to top node (this?)
   callback(this.value);
   //for the left child, apply depthFirstLog(callback)
@@ -80,7 +81,7 @@ BinarySearchTree.prototype.depthFirstLog = function (callback) {
   }
 };
 
-BinarySearchTree.prototype.traverseDepthFirst = function (callback) {
+BinarySearchTree.prototype.traverseDepthFirst = function(callback) {
   //apply callback to top node (this?)
   callback(this);
   //for the left child, apply depthFirstLog(callback)
@@ -93,7 +94,7 @@ BinarySearchTree.prototype.traverseDepthFirst = function (callback) {
   }
 };
 
-BinarySearchTree.prototype.terminalNodes = function () {
+BinarySearchTree.prototype.terminalNodes = function() {
   var output = [];
   this.traverseDepthFirst(function(node) {
     //debugger;
@@ -104,7 +105,7 @@ BinarySearchTree.prototype.terminalNodes = function () {
   return output;
 };
 
-BinarySearchTree.prototype.isUnbalanced = function () {
+BinarySearchTree.prototype.isUnbalanced = function() {
   var optimalNumber = Math.ceil(this.size() / 2);
   return (this.terminalNodes().length !== optimalNumber);
 };
