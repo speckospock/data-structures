@@ -1,10 +1,9 @@
 var Tree = function(value) {
   var newTree = {};
   newTree.value = value || null;
-
-  // your code here
   newTree.children = [];
   newTree.parent = null;
+
   // extend newTree with treeMethods
   _.extend(newTree, treeMethods);
   return newTree;
@@ -24,21 +23,11 @@ treeMethods.addChild = function(value) {
 };
 
 treeMethods.contains = function(target) {
-  // check if target is current tree's value
-  if (this.value === target) {
-    // if so, return true.
-    return true;
-  } else {
-    // else, iterate through current tree's children
-    for (let i = 0; i < this.children.length; i++) {
-      // if child contains value return true
-      if (this.children[i].contains(target)) {
-        return true;
-      }
-    }
-  }
-  // return false
-  return false;
+  // returns true if target is current tree's value
+  // recursively calls itself on each child tree if not
+  return (this.value === target) || !!this.children.reduce((found, child) => {
+    return (child.contains(target) || found);
+  }, false);
 };
 
 //treeMethods is breadth-first
