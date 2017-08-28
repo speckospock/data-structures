@@ -13,7 +13,6 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-  //  debugger;
 
   // create a tree with value of value
   var newChild = Tree(value);
@@ -58,11 +57,7 @@ treeMethods.siblings = function() {
   //Potentially need to bind this value
   if (this.parent) {
     var thisValue = this.value;
-    var allSiblings = this.parent.children.filter((sibling) => (sibling.value !== thisValue));
-    return allSiblings;
-    //.filter(function(sibling) => {
-    //return (sibling.value !== thisTree);
-    // });
+    return this.parent.children.filter((sibling) => (sibling.value !== thisValue));
   }
 };
 
