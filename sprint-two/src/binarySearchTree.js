@@ -5,6 +5,15 @@ var BinarySearchTree = function(value) {
   this.parent = null;
 };
 
+BinarySearchTree.prototype.children = function() {
+  var output = [];
+
+  !!this.left && output.push(this.left);
+  !!this.right && output.push(this.right);
+
+  return output;
+};
+
 //BinarySearchTree.prototype.numChilds
 BinarySearchTree.prototype.size = function() { //a function which calls depthFirstLog to count each child
   var _count = 0;
@@ -43,62 +52,37 @@ BinarySearchTree.prototype.insert = function(value) {
 };
 
 BinarySearchTree.prototype.contains = function(target) {
-  //if this.value is target:
-  if (this.value === target) {
-    //return true;
-    return true;
-  } else {
-    //else:
-    //if left:
-    if (this.left) {
-      //call contains on left, if true return true
-      if (this.left.contains(target)) {
-        return true;
-      }
-    }
-    //if right:
-    if (this.right) {
-      //call contains on right, if true return true
-      if (this.right.contains(target)) {
-        return true;
-      }
-    }
-  }
-  //outside of this return false
-  return false;
+  //Returns true if this.value is target, else recursively calls contains on each child
+  return this.value === target || this.children().reduce((wasFound, child) => {
+    return wasFound || child.contains(target);
+  }, false);
 };
 
 BinarySearchTree.prototype.depthFirstLog = function(callback) {
-  //apply callback to top node (this?)
+  //apply callback to top node
   callback(this.value);
-  //for the left child, apply depthFirstLog(callback)
-  if (this.left) {
-    this.depthFirstLog.call(this.left, callback);
-  }
-  //for the right child, apply depthFirstLog(callback)
-  if (this.right) {
-    this.depthFirstLog.call(this.right, callback);
-  }
+
+  //apply callback to each child node
+  this.children().forEach((child) => {
+    child.depthFirstLog(callback);
+  });
 };
 
 BinarySearchTree.prototype.traverseDepthFirst = function(callback) {
   //apply callback to top node (this?)
   callback(this);
-  //for the left child, apply depthFirstLog(callback)
-  if (this.left) {
-    this.traverseDepthFirst.call(this.left, callback);
-  }
-  //for the right child, apply traverseDepthFirst(callback)
-  if (this.right) {
-    this.traverseDepthFirst.call(this.right, callback);
-  }
+
+  //apply callback to each child node
+  this.children().forEach((child) => {
+    child.traverseDepthFirst(callback);
+  });
 };
 
 BinarySearchTree.prototype.terminalNodes = function() {
   var output = [];
   this.traverseDepthFirst(function(node) {
     //debugger;
-    if (!(node.left || node.right)) {
+    if (!node.children().length) {
       output.push(node);
     }
   });

@@ -28,6 +28,13 @@ describe('binarySearchTree', function() {
     expect(binarySearchTree.left.parent.value).to.equal(5);
   });
 
+  it('should return the children of a tree as an array', () => {
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(8);
+    var childrenValues = binarySearchTree.children().map((child) => child.value);
+    expect(childrenValues).to.eql([2, 8]);
+  });
+
   it('should return the correct number of terminal nodes in the tree', function() {
     binarySearchTree.insert(2);
     binarySearchTree.insert(3);
