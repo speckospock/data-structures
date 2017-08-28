@@ -41,20 +41,20 @@ describe('tree', function() {
     expect(tree.contains(8)).to.equal(true);
   });
 
-  it('should traverse the tree, apply a callback function to each node', function () {
+  it('should traverse the tree, apply a callback function to each node', function() {
     var nodes = [];
     tree.value = 1;
     tree.addChild(2);
     tree.addChild(3);
     tree.addChild(4);
     tree.children[1].addChild(5);
-    tree.traverse(function (element) {
+    tree.traverse(function(element) {
       nodes.push(element.value);
     });
     expect(nodes).to.eql([1, 2, 3, 5, 4]);
   });
 
-  it('should return the parent of a node', function () {
+  it('should return the parent of a node', function() {
     tree.value = 1;
     tree.addChild(2);
     tree.addChild(3);
@@ -65,16 +65,16 @@ describe('tree', function() {
     expect(tree.children[1].children[0].parent.value).to.equal(3);
   });
 
-  it('should return the siblings (all the parent\'s children) of a node', function () {
+  it('should return the siblings (all the parent\'s children) of a node', function() {
     tree.value = 1;
     tree.addChild(2);
     tree.addChild(3);
     tree.addChild(4);
     tree.children[1].addChild(5);
-    expect(tree.children[0].siblings.map((el) => el.value)).to.eql([3, 4]);
-    expect(tree.children[1].siblings.map((el) => el.value)).to.eql([2, 4]);
-    expect(tree.children[2].siblings.map((el) => el.value)).to.eql([2, 3]);
-    expect(tree.siblings).to.eql([]);
+    expect(tree.children[0].siblings().map((el) => el.value)).to.eql([3, 4]);
+    expect(tree.children[1].siblings().map((el) => el.value)).to.eql([2, 4]);
+    expect(tree.children[2].siblings().map((el) => el.value)).to.eql([2, 3]);
+    expect(!!tree.siblings()).to.be.false;
   });
 
 });

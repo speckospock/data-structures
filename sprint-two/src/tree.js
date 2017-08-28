@@ -5,7 +5,6 @@ var Tree = function(value) {
   // your code here
   newTree.children = [];
   newTree.parent = null;
-  newTree.siblings = [];
   // extend newTree with treeMethods
   _.extend(newTree, treeMethods);
   return newTree;
@@ -14,19 +13,12 @@ var Tree = function(value) {
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
-//  debugger;
+  //  debugger;
 
   // create a tree with value of value
   var newChild = Tree(value);
   // add parent property to newChild
   newChild.parent = this;
-  // iterate through this tree's children
-  for (let i = 0; i < this.children.length; i++) {
-    // add newChild to each of their siblings array
-    this.children[i].siblings.push(newChild);
-  }
-  // newChild.siblings = this tree's children
-  newChild.siblings = [...this.children];
   // push the new tree to tree.children
   this.children.push(newChild);
   //
@@ -35,7 +27,7 @@ treeMethods.addChild = function(value) {
 treeMethods.contains = function(target) {
   // check if target is current tree's value
   if (this.value === target) {
-  // if so, return true.
+    // if so, return true.
     return true;
   } else {
     // else, iterate through current tree's children
@@ -50,6 +42,7 @@ treeMethods.contains = function(target) {
   return false;
 };
 
+//treeMethods is breadth-first
 treeMethods.traverse = function(callback) {
   // call cb on this
   callback(this);
@@ -57,6 +50,19 @@ treeMethods.traverse = function(callback) {
   for (let i = 0; i < this.children.length; i++) {
     // call traverse(cb) on each child
     this.children[i].traverse(callback);
+  }
+};
+
+treeMethods.siblings = function() {
+  //if the tree has a parent, return all children except this tree.
+  //Potentially need to bind this value
+  if (this.parent) {
+    var thisValue = this.value;
+    var allSiblings = this.parent.children.filter((sibling) => (sibling.value !== thisValue));
+    return allSiblings;
+    //.filter(function(sibling) => {
+    //return (sibling.value !== thisTree);
+    // });
   }
 };
 
