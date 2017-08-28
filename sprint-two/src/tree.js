@@ -52,4 +52,5 @@ treeMethods.siblings = function() {
  // Tree is O(n), due to extend being O(n)
  // addChild is O(1), only requiring two operations
  // contains is O(n), as worst case is traversing every node
+ // traverse is O(n), for the same reason as contains
  */

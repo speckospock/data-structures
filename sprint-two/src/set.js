@@ -8,26 +8,28 @@ var Set = function() {
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  //if this._storage[item] !true, increment count
-  if (!this._storage[item]) {
-    this._length++;
-  }
+  //debugger;
+  //to handle any kind of object, we stringify the item to create the key
+  var key = JSON.stringify(item);
+  //if we're not modifying a value, increment length
+  !this._storage[key] && this._length++;
   // assign value at set storage at key item to true
-  this._storage[item] = true;
+  this._storage[key] = item;
 };
 
 setPrototype.contains = function(item) {
   // return set storage at key item or false
-  return this._storage[item] || false;
+  var key = JSON.stringify(item);
+
+  return (this._storage[key] === item) || false;
 };
 
 setPrototype.remove = function(item) {
-  //if this._storage[item] true, decrement count
-  if (this._storage[item]) {
-    this._length--;
-  }
+  var key = JSON.stringify(item);
+  //if there is something to remove, decrement length
+  this._storage[key] && this._length--;
   // assign value at set storage at key item to false
-  this._storage[item] = false;
+  delete this._storage[key];
 };
 
 

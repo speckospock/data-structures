@@ -14,28 +14,28 @@ describe('set', function() {
   it('should add values to a set', function() {
     set.add('Susan Sarandon');
     set.add('Danny Glover');
-    expect(set.contains('Danny Glover')).to.equal(true);
-    expect(set.contains('Susan Sarandon')).to.equal(true);
+    expect(set.contains('Danny Glover')).to.be.true;
+    expect(set.contains('Susan Sarandon')).to.be.true;
   });
 
   it('should return whether a value is contained in a set', function() {
     set.add('Peter Dinklage');
-    expect(set.contains('Peter Dinklage')).to.equal(true);
-    set.remove('Peter Dinklage');
-    expect(set.contains('Peter Dinklage')).to.equal(false);
+    expect(set.contains('Peter Dinklage')).to.be.true;
+    set.add('George Michael');
+    expect(set.contains('George Michael')).to.be.true;
   });
 
   it('should remove values from a set', function() {
     set.add('Mel Gibson');
     set.remove('Mel Gibson');
-    expect(set.contains('Mel Gibson')).to.equal(false);
+    expect(set.contains('Mel Gibson')).to.be.false;
   });
 
   it('should not allow duplicate values to be added to a set', function() {
     set.add('Peter Dinklage');
     set.add('Peter Dinklage');
     set.remove('Peter Dinklage');
-    expect(set.contains('Peter Dinklage')).to.equal(false);
+    expect(set.contains('Peter Dinklage')).to.be.false;
   });
 
   //implement set size test
